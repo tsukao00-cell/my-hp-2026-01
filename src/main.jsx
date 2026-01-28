@@ -365,7 +365,7 @@ const MainContent = () => {
               </FadeIn>
             </div>
             <div className="lg:col-span-4 rounded-[4rem] overflow-hidden shadow-2xl grayscale">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" alt="Profile" />
+              <img src="/profile.jpg" alt="Profile" />
             </div>
           </div>
         </section>
