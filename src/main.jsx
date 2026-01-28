@@ -365,7 +365,7 @@ const MainContent = () => {
               </FadeIn>
             </div>
             <div className="lg:col-span-4 rounded-[4rem] overflow-hidden shadow-2xl grayscale">
-              <img src="/profile.jpg" alt="Profile" />
+              <img src="/profile.JPG" alt="Profile" />
             </div>
           </div>
         </section>
