@@ -484,7 +484,7 @@ const MainContent = () => {
               <FadeIn>
                 <h2 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">Get in <br /> <span className="text-[#C97E6C]">Touch.</span></h2>
                 <p className="text-stone-400 text-xl leading-relaxed mb-12">通常24時間以内にご返信いたします。</p>
-                <div className="flex items-center gap-6 cursor-pointer">
+
 
               </FadeIn>
               <FadeIn delay={200}>
