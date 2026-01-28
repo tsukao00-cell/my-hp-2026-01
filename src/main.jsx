@@ -485,9 +485,7 @@ const MainContent = () => {
                 <h2 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">Get in <br /> <span className="text-[#C97E6C]">Touch.</span></h2>
                 <p className="text-stone-400 text-xl leading-relaxed mb-12">通常24時間以内にご返信いたします。</p>
                 <div className="flex items-center gap-6 cursor-pointer">
-                  <div className="w-12 h-12 rounded-2xl bg-stone-900 border border-stone-800 flex items-center justify-center"><Mail className="w-5 h-5 text-[#C97E6C]" /></div>
-                  <div><p className="text-[10px] font-bold text-stone-500 uppercase tracking-widest">Email Address</p><p className="text-lg font-bold">info@t-conditioning-design.com</p></div>
-                </div>
+
               </FadeIn>
               <FadeIn delay={200}>
                 <form onSubmit={handleFormSubmit} className="space-y-8 bg-stone-900/50 p-10 md:p-14 rounded-[4rem] border border-stone-800 backdrop-blur-sm" noValidate>
