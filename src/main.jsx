@@ -65,7 +65,7 @@ const ThemeProvider = ({ children }) => {
 // --- 2. SEO Management ---
 
 const SEO = () => {
-  const siteName = "塚越 貴男 | Life & Conditioning";
+  const siteName = "塚越 貴男 | Conditioning Design";
   const jobTitle = "パフォーマンスコーチ / Wellness Strategist";
   const fullTitle = `${siteName} - ${jobTitle}`;
   const description = "身体構造を最適化し、人生のパフォーマンスを向上させるコンディショニング。東京都内を中心にパーソナルセッションを提供。";
@@ -199,7 +199,7 @@ const MainContent = () => {
   ], []);
 
   const methods = useMemo(() => [
-    { id: "analysis", icon: Compass, title: "Bio-Logic Analysis", desc: "個々の骨格・神経のクセをミリ単位で解析。現状の『不均衡』を数値化し、改善への地図を描きます。" },
+    { id: "analysis", icon: Compass, title: "Bio-Logic Analysis", desc: "個々の骨格・神経のクセを解析。現状の『不均衡』を数値化し、改善への地図を描きます。" },
     { id: "stretch", icon: Maximize2, title: "Active Conditioning", desc: "筋肉の緊張を解くだけでなく、関節の可動域を『正しく使いこなせる』状態へと再編します。" },
     { id: "performance", icon: Zap, title: "Dynamic Training", desc: "整った土台の上で、最小限の努力で最大のパワーを生む動作を習得。ビジネスや競技に直結するキレを定着させます。", isAccent: true },
     { id: "recovery", icon: RefreshCw, title: "Cyclic Recovery", desc: "疲労を『投資』に変える。24時間の代謝サイクルを最適化し、常にエネルギーに満ちた状態を維持します。" }
@@ -293,7 +293,7 @@ const MainContent = () => {
       <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'bg-white/90 dark:bg-stone-950/90 backdrop-blur-xl py-4 shadow-sm' : 'bg-transparent py-8'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <button onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="flex items-center gap-2 group">
-            <span className="text-2xl font-black tracking-tighter uppercase text-stone-900 dark:text-white group-hover:text-[#C97E6C] transition-colors">L&C.</span>
+            <span className="text-2xl font-black tracking-tighter uppercase text-stone-900 dark:text-white group-hover:text-[#C97E6C] transition-colors">C&D.</span>
             <div className="w-1.5 h-1.5 bg-[#C97E6C] rounded-full group-hover:scale-150 transition-transform"></div>
           </button>
           <nav className="hidden md:flex items-center gap-10">
@@ -531,7 +531,7 @@ const MainContent = () => {
       <footer className="py-24 bg-white dark:bg-stone-950 border-t border-stone-100">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-center gap-12 mb-16">
-            <div className="text-center md:text-left"><p className="text-3xl font-black tracking-tighter uppercase mb-4">L&C.</p><p className="text-[10px] font-bold text-stone-400 uppercase tracking-[0.5em] leading-loose">© Takao Tsukakoshi / Conditioning Design. <br />All Rights Reserved.</p></div>
+            <div className="text-center md:text-left"><p className="text-3xl font-black tracking-tighter uppercase mb-4">C&D.</p><p className="text-[10px] font-bold text-stone-400 uppercase tracking-[0.5em] leading-loose">© Takao Tsukakoshi / Conditioning Design. <br />All Rights Reserved.</p></div>
             <div className="flex gap-10">
               <Instagram className="w-6 h-6 text-stone-400" />
               <Twitter className="w-6 h-6 text-stone-400" />
