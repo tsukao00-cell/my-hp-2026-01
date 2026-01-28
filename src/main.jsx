@@ -259,16 +259,28 @@ const MainContent = () => {
     
     setIsSubmitting(true);
     
-    // Simulation API Call
-    // TODO: ここを実際のAPI (Formspreeなど) に置き換えてください
-    // 例: await fetch("https://formspree.io/f/YOUR_ID", { method: 'POST', body: ... })
-    
-    await new Promise(r => setTimeout(r, 1500));
-    
-    setSubmitStatus('success');
-    setFormState({ name: '', email: '', message: '' });
-    setIsSubmitting(false);
-    lastSubmitTime.current = Date.now();
+   try {
+      const response = await fetch("https://formspree.io/f/mpqdveaw", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formState)
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormState({ name: '', email: '', message: '' });
+      } else {
+        alert("送信に失敗しました。時間をおいて再度お試しください。");
+      }
+    } catch (error) {
+      alert("通信エラーが発生しました。");
+    } finally {
+      setIsSubmitting(false);
+      lastSubmitTime.current = Date.now();
+    }
   };
 
   return (
