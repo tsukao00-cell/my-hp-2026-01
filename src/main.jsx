@@ -9,7 +9,7 @@ import {
 /**
  * Life & Conditioning - Premium Performance Coaching
  * 塚越 貴男 (Takao Tsukakoshi) Official Landing Page
- * [Vercel & SEO Optimized Edition]
+ * [Revised Edition: Security & UX Patched]
  */
 
 // --- 1. Context & Theme Provider ---
@@ -62,7 +62,7 @@ const ThemeProvider = ({ children }) => {
   );
 };
 
-// --- 2. SEO Management (Enhanced for Vercel) ---
+// --- 2. SEO Management ---
 
 const SEO = () => {
   const siteName = "塚越 貴男 | Life & Conditioning";
@@ -186,7 +186,10 @@ const MainContent = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [openFaq, setOpenFaq] = useState(null);
+  
+  // Spam Protection State
   const [honeypotValue, setHoneypotValue] = useState('');
+  
   const lastSubmitTime = useRef(0);
 
   const stats = useMemo(() => [
@@ -239,7 +242,12 @@ const MainContent = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (honeypotValue) return;
+    
+    // 1. Check Honeypot (Spam Trap)
+    if (honeypotValue) {
+      console.log("Bot detected."); 
+      return; 
+    }
 
     const errors = { name: '', email: '', message: '' };
     let isValid = true;
@@ -250,7 +258,13 @@ const MainContent = () => {
     if (!isValid) return;
     
     setIsSubmitting(true);
+    
+    // Simulation API Call
+    // TODO: ここを実際のAPI (Formspreeなど) に置き換えてください
+    // 例: await fetch("https://formspree.io/f/YOUR_ID", { method: 'POST', body: ... })
+    
     await new Promise(r => setTimeout(r, 1500));
+    
     setSubmitStatus('success');
     setFormState({ name: '', email: '', message: '' });
     setIsSubmitting(false);
@@ -322,7 +336,13 @@ const MainContent = () => {
             <div className="lg:col-span-5">
               <FadeIn delay={200}>
                 <div className="aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl relative z-10 group">
-                  <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=1200" alt="Training" className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000" />
+                  <img 
+                    src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=1200" 
+                    alt="Training" 
+                    className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000"
+                    width="1200"
+                    height="1500"
+                  />
                 </div>
               </FadeIn>
             </div>
@@ -365,7 +385,17 @@ const MainContent = () => {
               </FadeIn>
             </div>
             <div className="lg:col-span-4 rounded-[4rem] overflow-hidden shadow-2xl grayscale">
-              <img src="/profile.JPG" alt="Profile" />
+              <img 
+                src="/profile.JPG" 
+                alt="Takao Tsukakoshi"
+                className="w-full h-full object-cover"
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null; 
+                  // If image fails, you might want to show a placeholder or keep it blank
+                  console.warn("Profile image not found at /profile.JPG");
+                }}
+              />
             </div>
           </div>
         </section>
@@ -399,7 +429,12 @@ const MainContent = () => {
               {articles.map((article, i) => (
                 <FadeIn key={article.id} delay={i * 100} className="group cursor-pointer">
                   <div className="aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-8 relative shadow-lg">
-                    <img src={article.image} alt={article.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" loading="lazy" />
+                    <img 
+                      src={article.image} 
+                      alt={article.title} 
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                      loading="lazy" 
+                    />
                     <div className="absolute top-6 left-6 bg-white/95 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase text-[#C97E6C]">{article.platform}</div>
                   </div>
                   <p className="text-[10px] font-bold text-stone-400 mb-3 tracking-widest">{article.date}</p>
@@ -444,6 +479,19 @@ const MainContent = () => {
               </FadeIn>
               <FadeIn delay={200}>
                 <form onSubmit={handleFormSubmit} className="space-y-8 bg-stone-900/50 p-10 md:p-14 rounded-[4rem] border border-stone-800 backdrop-blur-sm" noValidate>
+                  
+                  {/* --- HONEYPOT FIELD (Spam Trap) --- */}
+                  <input 
+                    type="text" 
+                    name="bot-field"
+                    value={honeypotValue} 
+                    onChange={(e) => setHoneypotValue(e.target.value)} 
+                    className="hidden" 
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                  {/* ---------------------------------- */}
+
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold uppercase tracking-widest text-[#C97E6C]">Full Name</label>
                     <input type="text" value={formState.name} onChange={(e) => setFormState({...formState, name: e.target.value})} className="w-full bg-transparent border-b border-stone-800 focus:border-[#C97E6C] py-4 outline-none transition-all text-xl" placeholder="お名前" />
@@ -496,7 +544,6 @@ const MainContent = () => {
   );
 };
 
-// --- 5. 起動スイッチ (ここがないと画面が表示されません) ---
 const App = () => (<ThemeProvider><MainContent /></ThemeProvider>);
 const rootElement = document.getElementById('root');
 if (rootElement) {
