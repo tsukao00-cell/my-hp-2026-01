@@ -198,24 +198,31 @@ const MainContent = () => {
     { label: "Strategy", value: "Custom", suffix: "Tailored" }
   ], []);
 
-  const methods = useMemo(() => [
-    { id: "analysis", icon: Compass, title: "Bio-Logic Analysis", desc: "個々の骨格・神経のクセを解析。現状の『不均衡』を数値化し、改善への地図を描きます。" },
-    { id: "stretch", icon: Maximize2, title: "Active Conditioning", desc: "筋肉の緊張を解くだけでなく、関節の可動域を『正しく使いこなせる』状態へと再編します。" },
-    { id: "performance", icon: Zap, title: "Dynamic Training", desc: "整った土台の上で、最小限の努力で最大のパワーを生む動作を習得。ビジネスや競技に直結するキレを定着させます。", isAccent: true },
-    { id: "recovery", icon: RefreshCw, title: "Cyclic Recovery", desc: "疲労を『投資』に変える。24時間の代謝サイクルを最適化し、常にエネルギーに満ちた状態を維持します。" }
-  ], []);
+ const [articles, setArticles] = useState([]);
 
-  const articles = useMemo(() => [
-    { id: 1, title: "「整える」ことから始める、ハイパフォーマンスの作り方", platform: "note", date: "2024.03.10", image: "https://images.unsplash.com/photo-1544367563-12123d8965cd?auto=format&fit=crop&q=80&w=800" },
-    { id: 2, title: "The Art of Reciprocal Conditioning: Why balance matters.", platform: "Medium", date: "2024.02.22", image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=800" },
-    { id: 3, title: "経営者が「筋トレ」よりも「ストレッチ」を優先すべき3つの理由", platform: "note", date: "2024.01.15", image: "https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?auto=format&fit=crop&q=80&w=800" },
-  ], []);
-
-  const faqs = useMemo(() => [
-    { q: "体験セッションの内容は？", a: "まずは60分のカウンセリングと身体評価を行い、現在の課題を明確にします。その後、残りの30分で実際に身体の変化を体感いただく調整を行います。" },
-    { q: "出張対応エリアを教えてください。", a: "東京都23区内を中心に活動しています。ご自宅やオフィスへの出張が可能です。その他のエリアについても随時ご相談ください。" },
-    { q: "運動不足ですが、大丈夫ですか？", a: "全く問題ありません。私のメソッドは「整える」ことに重点を置いています。あなたの現在の状態に合わせて無理のない範囲からスタートします。" }
-  ], []);
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const res = await fetch("https://takao-conditioning.microcms.io/api/v1/news", {
+          headers: {
+            "X-MICROCMS-API-KEY": import.meta.env.VITE_MICROCMS_API_KEY,
+          },
+        });
+        const data = await res.json();
+        const formatted = data.contents.map((item) => ({
+          id: item.id,
+          title: item.title,
+          platform: item.category || "News",
+          date: item.date ? item.date.split('T')[0].replace(/-/g, '.') : "",
+          image: "https://images.unsplash.com/photo-1544367563-12123d8965cd?auto=format&fit=crop&q=80&w=800"
+        }));
+        setArticles(formatted);
+      } catch (err) {
+        console.error("microCMSの読み込み失敗:", err);
+      }
+    };
+    fetchNews();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
