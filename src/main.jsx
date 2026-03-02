@@ -197,7 +197,12 @@ const MainContent = () => {
     { label: "Annual Sessions", value: "1,200", suffix: "+" },
     { label: "Strategy", value: "Custom", suffix: "Tailored" }
   ], []);
-
+const methods = useMemo(() => [
+    { id: "analysis", icon: Compass, title: "Bio-Logic Analysis", desc: "個々の骨格・神経のクセを解析。現状の『不均衡』を数値化し、改善への地図を描きます。" },
+    { id: "stretch", icon: Maximize2, title: "Active Conditioning", desc: "筋肉の緊張を解くだけでなく、関節の可動域を『正しく使いこなせる』状態へと再編します。" },
+    { id: "performance", icon: Zap, title: "Dynamic Training", desc: "整った土台の上で、最小限の努力で最大のパワーを生む動作を習得。ビジネスや競技に直結するキレを定着させます。", isAccent: true },
+    { id: "recovery", icon: RefreshCw, title: "Cyclic Recovery", desc: "疲労を『投資』に変える。24時間の代謝サイクルを最適化し、常にエネルギーに満ちた状態を維持します。" }
+  ], []);
  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
