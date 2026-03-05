@@ -648,7 +648,7 @@ const MainContent = () => {
             <div className="lg:col-span-4 rounded-[4rem] overflow-hidden shadow-2xl grayscale">
               {/* ✅ Fix: 拡張子を小文字に（Linux サーバーで大文字は 404 になる可能性あり） */}
               <img
-                src="/profile.jpg"
+                src="/profile.JPEG"
                 alt="塚越 貴男 - パーソナルコンディショニングコーチ"
                 loading="lazy"
                 className="w-full h-full object-cover"
